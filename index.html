@@ -232,7 +232,8 @@
                     </div>
                 </div>
 
-                <form class="contact-form">
+                <form class="contact-form" action="https://formspree.io/f/mreegzqp" method="POST">
+                    <input type="hidden" name="_subject" value="New Manual Driving Inquiry from Website">
                     <h3>Send a Message</h3>
                     <div class="form-group">
                         <label for="name">Full Name</label>
@@ -314,6 +315,21 @@
                 }
             });
         });
+        // Form submission handler
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                // Just do a simple check without preventing default
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                if (!name || !email || !message) {
+                    alert('Please fill in all required fields.');
+                    e.preventDefault(); // Only stop if validation fails
+                    return;
+                }
+            });
     </script>
 
 
