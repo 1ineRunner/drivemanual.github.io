@@ -285,7 +285,7 @@ img {
     flex: 1;
     display: flex;
     justify-content: center;
-    transform: translate(-20%, 10%);
+    transform: translate(-24%, 10%);
 }
 
 .image-placeholder {
