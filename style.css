@@ -282,6 +282,7 @@ img {
     flex: 1;
     display: flex;
     justify-content: center;
+    transform: translate(-20%, 10%);
 }
 
 .image-placeholder {
@@ -294,6 +295,7 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    align: center;
     color: white;
     box-shadow: var(--box-shadow);
 }
