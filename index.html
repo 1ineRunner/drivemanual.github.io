@@ -319,18 +319,22 @@
         const contactForm = document.querySelector('.contact-form');
         if (contactForm) {
             contactForm.addEventListener('submit', function (e) {
-                // Simple check without preventing default
+                // Simple validation
                 const name = document.getElementById('name').value;
                 const email = document.getElementById('email').value;
                 const message = document.getElementById('message').value;
 
                 if (!name || !email || !message) {
                     alert('Please fill in all required fields.');
-                    e.preventDefault(); // Only stop if validation fails
+                    e.preventDefault();
                     return;
                 }
-            })
-        };
+
+                setTimeout(() => {
+                    this.reset();
+                }, 100); // Small delay to ensure submission starts
+            });
+        }
     </script>
 
 
