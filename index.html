@@ -318,23 +318,56 @@
         // Form submission handler
         const contactForm = document.querySelector('.contact-form');
         if (contactForm) {
-            contactForm.addEventListener('submit', function (e) {
-                // Simple validation
+            contactForm.addEventListener('submit', async function (e) {
+                e.preventDefault(); // Prevent default form submission
+
+                // Validation
                 const name = document.getElementById('name').value;
                 const email = document.getElementById('email').value;
                 const message = document.getElementById('message').value;
 
                 if (!name || !email || !message) {
                     alert('Please fill in all required fields.');
-                    e.preventDefault();
                     return;
                 }
 
-                setTimeout(() => {
-                    this.reset();
-                }, 100); // Small delay to ensure submission starts
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+
+                try {
+                    // Send form data to Formspree
+                    const formData = new FormData(this);
+                    const response = await fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // Success! Clear the form
+                        this.reset();
+
+                        // Show success message
+                        alert('Thank you! Your message has been sent successfully.');
+
+                    } else {
+                        alert('Oops! There was a problem sending your message. Please try again.');
+                    }
+                } catch (error) {
+                    alert('Network error. Please check your connection and try again.');
+                } finally {
+                    // Reset button state
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
             });
         }
+
     </script>
 
 
